@@ -17,6 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class RateLimitController {
 
     /**
+     * Sentinel Starter 默认为所有的 HTTP 服务提供了限流埋点
+     */
+    @GetMapping("/byDefaut")
+    public CommonResult byDefaut() {
+        return new CommonResult("默认限流", 200);
+    }
+
+    /**
      * 按资源名称限流，需要指定限流处理逻辑
      */
     @GetMapping("/byResource")
@@ -44,7 +52,7 @@ public class RateLimitController {
     }
 
     public CommonResult handleException(BlockException exception){
-        return new CommonResult(exception.getClass().getCanonicalName(),200);
+        return new CommonResult(exception.getClass().getCanonicalName()+"，本类自定义异常",200);
     }
 
 }
