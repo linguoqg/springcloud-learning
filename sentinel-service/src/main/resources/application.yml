@@ -9,7 +9,7 @@ spring:
         server-addr: localhost:8848 #配置Nacos地址
     sentinel:
       transport:
-        dashboard: localhost:8080 #配置sentinel dashboard地址
+        dashboard: localhost:9001 #配置sentinel dashboard地址
         port: 8719
       datasource:
         ds1:

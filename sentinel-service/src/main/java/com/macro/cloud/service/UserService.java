@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by macro on 2019/9/5.
+ * 使用PathVariable、RequestParam必须有括号中的传入参数定义，否则会报错
  */
 @FeignClient(value = "nacos-user-service",fallback = UserFallbackService.class)
 public interface UserService {
@@ -15,14 +16,14 @@ public interface UserService {
     CommonResult create(@RequestBody User user);
 
     @GetMapping("/user/{id}")
-    CommonResult<User> getUser(@PathVariable Long id);
+    CommonResult<User> getUser(@PathVariable("id") Long id);
 
     @GetMapping("/user/getByUsername")
-    CommonResult<User> getByUsername(@RequestParam String username);
+    CommonResult<User> getByUsername(@RequestParam("username") String username);
 
     @PostMapping("/user/update")
     CommonResult update(@RequestBody User user);
 
     @PostMapping("/user/delete/{id}")
-    CommonResult delete(@PathVariable Long id);
+    CommonResult delete(@PathVariable("id") Long id);
 }
